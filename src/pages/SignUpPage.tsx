@@ -9,15 +9,17 @@ import Notification from "../components/notification"
 const SignUpPage = () => {
   const {register, handleSubmit, formState: { errors }} = useForm<NewUser>()
   const navigate =  useNavigate();
-  const { registerUser, loading } = useAuth()
+  const { registerUser, loading, error } = useAuth()
 
   const onSubmit: SubmitHandler<NewUser> = async(data) => {
     const success = await registerUser(data)
     if (success) {
       toast.success("User registered successfully!");
-      navigate("/login")
+      setTimeout(() => {
+        navigate("/login")
+      },2000)
     } else {
-      toast.error("Registration failed. Please try again.");
+      toast.error(error || "Registration failed. Please try again.");
     }  
   }
 

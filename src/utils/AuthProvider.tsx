@@ -8,7 +8,8 @@ interface Props {
 }
 
 interface AuthContextType {
-  user: AuthUser | null
+  user: AuthUser | null;
+  error: string;
   login: (data: LoginUser) => Promise<boolean>
   registerUser: (data: NewUser) => Promise<boolean>;
   logout: () => void;
@@ -19,10 +20,12 @@ const AuthContext = createContext<AuthContextType | null>(null)
 
 const AuthProvider = ({ children }: Props) => {
   const [user, setUser] = useState<AuthUser | null>(null)
+  const [error, setError] = useState("")
   const [loading, setLoading] = useState(false);
   
   const login = async(data: LoginUser) => {
       setLoading(true)
+      setError("")
       try{
       const res = await fetch("http://127.0.0.1:8000/auth/login",{
         method: "POST",
@@ -33,6 +36,8 @@ const AuthProvider = ({ children }: Props) => {
         body: JSON.stringify(data)
       })
       if(!res.ok) {
+        const errorData = await res.json();
+        setError(errorData.detail);
         throw new Error(`HTTP Error status: ${res.status}`)
       }
       const responseData = await res.json();
@@ -49,6 +54,7 @@ const AuthProvider = ({ children }: Props) => {
   
   const registerUser = async(data: NewUser) => {
       setLoading(true)
+      setError("")
       try{
           const res = await fetch("http://127.0.0.1:8000/auth/register",{
             method: "POST",
@@ -59,6 +65,8 @@ const AuthProvider = ({ children }: Props) => {
             body: JSON.stringify(data)
           })
           if(!res.ok) {
+            const errorData = await res.json();
+            setError(errorData.detail);
             throw new Error(`HTTP Error status: ${res.status}`)
           }
           return true
@@ -92,7 +100,8 @@ const AuthProvider = ({ children }: Props) => {
     login,
     registerUser,
     loading,
-    logout
+    logout,
+    error
   }
   return (
     <AuthContext.Provider value={context}>

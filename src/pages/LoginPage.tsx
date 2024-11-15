@@ -3,6 +3,8 @@ import loginImage from "../assets/simone-hutsch-2H3OuzkF-SY-unsplash 1.png"
 import { SubmitHandler, useForm } from "react-hook-form"
 import LoginUser from "../entities/LoginUser"
 import { useAuth } from "../utils/AuthProvider"
+import Notification from "../components/notification"
+import { toast } from "react-toastify"
 
 const LoginPage = () => {
   const {register, handleSubmit, formState: { errors }} = useForm<LoginUser>()
@@ -13,6 +15,8 @@ const LoginPage = () => {
     const success = await login(data);
     if (success) {
         navigate("/"); // Redirect on successful login
+    }else {
+      toast.error("Login attempt failed")
     }
   };
 
@@ -37,6 +41,7 @@ const LoginPage = () => {
           <p className="text-zinc-600 text-center mt-5">Don't have an account <Link to="/signup"><span className="text-purple underline">Sign Up</span></Link></p>
         </div>
         <img className="max-lg:hidden" src={loginImage} alt="login illustration" />
+        <Notification />
       </div>
   )
 }
