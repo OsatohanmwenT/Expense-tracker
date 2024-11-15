@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import NewUser from "../entities/NewUser"
 import { useAuth } from "../utils/AuthProvider"
 import { toast } from "react-toastify"
-import Notification from "../components/notification"
+import Notification from "../components/Notification"
 
 const SignUpPage = () => {
   const {register, handleSubmit, formState: { errors }} = useForm<NewUser>()
@@ -48,7 +48,7 @@ const SignUpPage = () => {
         </form>
         <p className="text-zinc-600 text-center mt-5">Already have an account <Link to="/login"><span className="text-purple underline">Login</span></Link></p>
       </div>
-      <img className="max-md:hidden" src={loginImage} alt="login illustration" />
+      <img className="max-lg:hidden" src={loginImage} alt="login illustration" />
       <Notification />
     </div>
   )

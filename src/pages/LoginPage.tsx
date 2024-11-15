@@ -3,20 +3,25 @@ import loginImage from "../assets/simone-hutsch-2H3OuzkF-SY-unsplash 1.png"
 import { SubmitHandler, useForm } from "react-hook-form"
 import LoginUser from "../entities/LoginUser"
 import { useAuth } from "../utils/AuthProvider"
-import Notification from "../components/notification"
+import Notification from "../components/Notification"
 import { toast } from "react-toastify"
 
 const LoginPage = () => {
   const {register, handleSubmit, formState: { errors }} = useForm<LoginUser>()
-  const { login, loading } = useAuth()
+  const { login, loading, error, user } = useAuth()
   const navigate = useNavigate();
+
+  if(user) navigate("/")
 
   const onSubmit: SubmitHandler<LoginUser> = async (data) => {
     const success = await login(data);
     if (success) {
-        navigate("/"); // Redirect on successful login
+      toast.success("Success");
+      setTimeout(() => {
+        navigate("/");
+      },2000)
     }else {
-      toast.error("Login attempt failed")
+      toast.error(error || "Login attempt failed")
     }
   };
 
