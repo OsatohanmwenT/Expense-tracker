@@ -1,6 +1,8 @@
 const Layout = () => {
   return (
-    <div>Layout</div>
+    <div className="min-h-screen">
+      
+    </div>
   )
 }
 
