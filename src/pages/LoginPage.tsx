@@ -16,10 +16,7 @@ const LoginPage = () => {
   const onSubmit: SubmitHandler<LoginUser> = async (data) => {
     const success = await login(data);
     if (success) {
-      toast.success("Success");
-      setTimeout(() => {
         navigate("/");
-      },2000)
     }else {
       toast.error(error || "Login attempt failed")
     }

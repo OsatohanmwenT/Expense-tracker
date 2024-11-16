@@ -20,9 +20,9 @@ const Navbar = () => {
                         <span className="mx-2 font-bold text-2xl text-purple">Horizon</span>
                     </div>
                 </Link>
-                <div className="flex ml-5 items-center gap-4">
+                <div className="flex ml-5 max-md:hidden items-center gap-4">
                     {links.map((item) => (
-                        <NavLink style={({ isActive }) => isActive ? activeStyles : undefined} className="hover:font-semibold" to={item.link}>{item.value}</NavLink>
+                        <NavLink key={item.value} style={({ isActive }) => isActive ? activeStyles : undefined} className="hover:font-semibold" to={item.link}>{item.value}</NavLink>
                     ))}
                 </div>
             </div>
