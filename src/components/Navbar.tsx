@@ -1,18 +1,19 @@
 import { Link, NavLink } from "react-router-dom"
-import logo from "../assets/Vector.svg"
-import { links } from "../constants"
-import { useAuth } from "../utils/AuthProvider"
+import logo from "@/assets/Vector.svg"
+import { links } from "@/constants"
+import { useAuth } from "@/utils/AuthProvider"
+import {useState} from "react";
 
 const Navbar = () => {
-    const { user } = useAuth();
+    const [isOpen, setIsOpen] = useState(false)
+    const { user, logout } = useAuth();
 
     const activeStyles = {
         fontWeight: "semibold",
     }
-
   return (
-    <header>
-        <nav className="flex items-center px-4 lg:px-6 py-3 border-b-2 justify-between">
+    <header className="bg-white">
+        <nav className="flex items-center z-10 px-4 lg:px-6 py-3 border-b-2 justify-between">
             <div className="flex">
                 <Link to="/">
                     <div className="flex">
@@ -26,11 +27,15 @@ const Navbar = () => {
                     ))}
                 </div>
             </div>
-            <div>
-                <button className="flex items-center justify-between rounded-md border-2 px-3 py-1">
+            <div className="relative">
+                <button onClick={() => setIsOpen(prev => !prev)} className="flex items-center justify-between rounded-md border-2 px-3 py-1">
                     <div className="w-5 h-5 rounded-full bg-purple"></div>
                     <span className="font-semibold ml-2 capitalize">{user?.username}</span>
                 </button>
+                <div className={`${isOpen ? "top-14 opacity-100 z-10" : "top-[50px] opacity-0 -z-10"} shadow transition-all right-1 absolute rounded-md`}>
+                    <button onClick={logout} className="px-5 py-2">Logout</button>
+                    <button className="px-5 py-2 text-nowrap">Dark mode</button>
+                </div>
             </div>
         </nav>
     </header>

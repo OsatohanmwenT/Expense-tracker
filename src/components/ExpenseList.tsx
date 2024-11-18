@@ -1,10 +1,12 @@
 import { MouseEvent, useEffect, useState } from "react"
 import DialogBox from "./DialogBox";
 import DeleteDialogBox from "./DeleteDialogBox";
+import AddDialogBox from "./AddDialogBox";
 
 const ExpenseList = () => {
     const [openRow, setOpenRow] = useState<number | null>(null)
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isAddBoxOpen, setIsAddBoxOpen] = useState(false);
     const [isAlertOpen, setIsAlertOpen] = useState(false);
 
     const tableData = [
@@ -45,7 +47,6 @@ const ExpenseList = () => {
             discount: "18%",
         },
       ];
-
       
       useEffect(() => {
         const closePopup = () => setOpenRow(null);
@@ -71,6 +72,12 @@ const ExpenseList = () => {
 
   return (
     <>
+        <div className="flex items-center justify-between">
+            <div className="rounded-md border-2 sm:flex-1 max-w-[400px] overflow-hidden">
+                <input className="w-full px-2 focus:outline-none py-2" placeholder="filter by description..." type="text" />
+            </div>
+            <button onClick={() => setIsAddBoxOpen(true)} className="bg-black text-white rounded-md px-3 py-2 hover:bg-black/80 transition-all">Add Expense</button>
+        </div>
         <table className="w-full mx-auto text-left">
             <thead>
                 <tr className="border-b-[1px]">
@@ -105,6 +112,7 @@ const ExpenseList = () => {
                 ))}
             </tbody>
         </table>
+        <AddDialogBox isAddBoxOpen={isAddBoxOpen} setIsAddBoxOpen={setIsAddBoxOpen} />
         <DialogBox isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} />
         <DeleteDialogBox isAlertOpen={isAlertOpen} setIsAlertOpen={setIsAlertOpen} />
     </>
