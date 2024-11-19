@@ -16,29 +16,16 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import ExpenseForm from "@/components/ExpenseForm.tsx";
+import { ExpenseFormSchema } from "./ExpenseFormSchema";
+import Expense from "@/entities/Expense";
 
 interface DialogDemoProps {
   isAddBoxOpen: boolean;
   setIsAddBoxOpen: (isOpen: boolean) => void;
 }
-
-interface Expense {
-  amount: string;
-  description: string;
-  category: string;
-  date: string | null
-}
-
-const FormSchema = z.object({
-  amount: z.string({ required_error: "Amount is required" }),
-  description: z.string({ required_error: "Description is required" }),
-  category: z.string({ required_error: "Category is required" }),
-  date: z.date({ required_error: "Date is required" }),
-});
 
 function AddDialogBox({
   isAddBoxOpen,
@@ -47,7 +34,7 @@ function AddDialogBox({
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const form = useForm({
-    resolver: zodResolver(FormSchema),
+    resolver: zodResolver(ExpenseFormSchema),
     defaultValues: {
       amount: "",
       description: "",
@@ -59,8 +46,6 @@ function AddDialogBox({
   const onSubmit = (data: Expense) => {
     console.log("Submitted Data:", data);
   };
-
-
 
   if (isDesktop) {
     return (
