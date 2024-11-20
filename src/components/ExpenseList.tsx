@@ -2,51 +2,14 @@ import { MouseEvent, useEffect, useState } from "react"
 import DialogBox from "./DialogBox";
 import DeleteDialogBox from "./DeleteDialogBox";
 import AddDialogBox from "./AddDialogBox";
+import useExpense from "@/hooks/useExpense.tsx";
 
 const ExpenseList = () => {
     const [openRow, setOpenRow] = useState<number | null>(null)
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isAddBoxOpen, setIsAddBoxOpen] = useState(false);
     const [isAlertOpen, setIsAlertOpen] = useState(false);
-
-    const tableData = [
-        {
-          income: "$10000.00",
-          amount: "$100",
-          percentage: "20%",
-          discount: "15%",
-        },
-        {
-          income: "$5000.00",
-          amount: "$50",
-          percentage: "10%",
-          discount: "5%",
-        },
-        {
-          income: "$15000.00",
-          amount: "$200",
-          percentage: "25%",
-          discount: "18%",
-        },
-        {
-            income: "$10000.00",
-            amount: "$100",
-            percentage: "20%",
-            discount: "15%",
-        },
-        {
-            income: "$5000.00",
-            amount: "$50",
-            percentage: "10%",
-            discount: "5%",
-        },
-        {
-            income: "$15000.00",
-            amount: "$200",
-            percentage: "25%",
-            discount: "18%",
-        },
-      ];
+    const { data } = useExpense();
       
       useEffect(() => {
         const closePopup = () => setOpenRow(null);
@@ -88,12 +51,12 @@ const ExpenseList = () => {
                 </tr>
             </thead>
             <tbody>
-                {tableData.map((tableItem, index) => (
+                {data?.map((tableItem, index) => (
                     <tr className="border-b-[1px] relative" key={index}>
-                        <td className="p-4 align-middle">{tableItem.income}</td>
                         <td className="p-4 align-middle">{tableItem.amount}</td>
-                        <td className="p-4 align-middle">{tableItem.percentage}</td>
-                        <td className="p-4 align-middle">{tableItem.discount}</td>
+                        <td className="p-4 align-middle">{tableItem.category}</td>
+                        <td className="p-4 align-middle">{tableItem.description}</td>
+                        <td className="p-4 align-middle">{tableItem.date}</td>
                         <td className="p-4 align-middle">
                             <button onClick={(e) => toggleAction(e, index)} className="flex items-center gap-1">
                                 <div className="w-2 h-2 bg-black rounded-full"></div>
