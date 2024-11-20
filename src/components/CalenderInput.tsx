@@ -13,8 +13,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import {ControllerRenderProps, FieldValues} from "react-hook-form";
 
-function CalenderInput({ field }: { field: any }) {
+interface CalendarInputProps {
+  field: ControllerRenderProps<FieldValues, string>
+}
+
+function CalenderInput({ field }: CalendarInputProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -40,6 +45,7 @@ function CalenderInput({ field }: { field: any }) {
           mode="single"
           selected={field.value}
           onSelect={field.onChange}
+
           disabled={(date) =>
             date > new Date() || date < new Date("1900-01-01")
           }

@@ -39,7 +39,7 @@ function AddDialogBox({
       amount: "",
       description: "",
       category: "",
-      date: null
+      date: ""
     },
   });
 
