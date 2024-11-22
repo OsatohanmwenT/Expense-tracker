@@ -21,15 +21,15 @@ function SelectInput({ field }: { field: any }) {
   }
 
   return (
-    <Select onValueChange={field.onChange} value={field.value}>
+    <Select  onValueChange={field.onChange} value={field.value}>
       <SelectTrigger>
         <SelectValue placeholder="Select a Category" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="bg-black">
         <SelectGroup>
-          <SelectLabel>Category</SelectLabel>
+          <SelectLabel className="text-white">Category</SelectLabel>
           {data?.map((category) => (
-            <SelectItem key={category.id} value={category.name}>
+            <SelectItem className="text-white" key={category.id} value={category.name}>
               {category.name}
             </SelectItem>
           ))}

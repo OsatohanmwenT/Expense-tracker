@@ -1,7 +1,7 @@
 import * as React from "react";
-import { cn } from "@/lib/utils";
-import { useMediaQuery } from "../hooks/use-media-query";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils.ts";
+import { useMediaQuery } from "../../hooks/use-media-query.ts";
+import { Button } from "@/components/ui/button.tsx";
 import {
   Drawer,
   DrawerClose,
@@ -10,16 +10,16 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-} from "@/components/ui/drawer";
+} from "@/components/ui/drawer.tsx";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@/components/ui/dialog.tsx";
+import { Input } from "@/components/ui/input.tsx";
+import { Label } from "@/components/ui/label.tsx";
 
 interface DialogDemoProps {
   isDialogOpen: boolean;
@@ -32,24 +32,24 @@ export function DialogBox({ isDialogOpen, setIsDialogOpen }: DialogDemoProps) {
   const ProfileForm = ({ className }: React.ComponentProps<"form">) => (
     <form className={cn("grid items-start gap-4", className)}>
       <div className="grid gap-2">
-        <Label htmlFor="email">Email</Label>
-        <Input type="email" id="email" defaultValue="shadcn@example.com" />
+        <Label className="text-purple" htmlFor="email">Email</Label>
+        <Input className="text-white border-zinc-800" type="email" id="email" defaultValue="shadcn@example.com" />
       </div>
       <div className="grid gap-2">
-        <Label htmlFor="username">Username</Label>
-        <Input id="username" defaultValue="@shadcn" />
+        <Label className="text-purple" htmlFor="username">Username</Label>
+        <Input className="text-white border-zinc-800" id="username" defaultValue="@shadcn" />
       </div>
-      <Button type="submit">Save changes</Button>
+      <Button className="bg-purple hover:bg-purple/80" type="submit">Save changes</Button>
     </form>
   );
 
   if (isDesktop) {
     return (
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px] border-zinc-800 bg-zinc-900">
           <DialogHeader>
-            <DialogTitle>Edit Profile</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="text-white">Edit Profile</DialogTitle>
+            <DialogDescription className="text-zinc-400">
               Make changes to your profile here. Click save when you're done.
             </DialogDescription>
           </DialogHeader>

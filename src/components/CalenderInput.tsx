@@ -1,6 +1,6 @@
 "use client"
 
-import { format } from "date-fns"
+import { format, startOfDay, } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -16,7 +16,7 @@ import {
 import {ControllerRenderProps, FieldValues} from "react-hook-form";
 
 interface CalendarInputProps {
-  field: ControllerRenderProps<FieldValues, string>
+  field: ControllerRenderProps<FieldValues, "date">
 }
 
 function CalenderInput({ field }: CalendarInputProps) {
@@ -27,12 +27,12 @@ function CalenderInput({ field }: CalendarInputProps) {
           <Button
             variant={"outline"}
             className={cn(
-              "pl-3 text-left font-normal",
+              "pl-3 text-left font-normal bg-black",
               !field.value && "text-muted-foreground"
             )}
           >
             {field.value ? (
-              format(field.value, "PPP")
+              format(startOfDay(field.value), "PPP")
             ) : (
               <span>Pick a date</span>
             )}
@@ -41,11 +41,12 @@ function CalenderInput({ field }: CalendarInputProps) {
         </FormControl>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
-        <Calendar
+        <Calendar className="bg-black text-white"
           mode="single"
           selected={field.value}
-          onSelect={field.onChange}
-
+          onSelect={(date) => {
+            field.onChange(date ? startOfDay(date) : null);
+          }}
           disabled={(date) =>
             date > new Date() || date < new Date("1900-01-01")
           }

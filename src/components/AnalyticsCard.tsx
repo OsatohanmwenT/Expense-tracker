@@ -1,10 +1,10 @@
 const AnalyticsCard = () => {
   return (
-    <div className="p-6 py-8 rounded-2xl shadow">
+    <div className="p-6 rounded-2xl border-zinc-900 border-2">
       <div>
-        <p className="font-semibold">Total Amount Processed</p>
+        <p className="font-semibold text-white/70">Total Budget</p>
       </div>
-      <p className="font-bold text-4xl">$40.6k</p>
+      <p className="font-bold text-3xl text-white/80">₦400.6k</p>
       <p className="text-sm text-red-400 mt-2">-37% from yesterday</p>
     </div>
   )

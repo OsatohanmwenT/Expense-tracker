@@ -19,7 +19,7 @@ const ExpenseForm = React.memo(({ className, form, onSubmit }: ExpenseFormProps)
     return (
         <FormProvider {...form}>
             <form
-                className={cn("grid items-start gap-4", className)}
+                className={cn("grid items-start gap-4 dark", className)}
                 onSubmit={form.handleSubmit(onSubmit)}
             >
                         <div className="grid gap-2">
@@ -44,12 +44,12 @@ const ExpenseForm = React.memo(({ className, form, onSubmit }: ExpenseFormProps)
                             <Label htmlFor="category">Category</Label>
                             <FormField
                                 control={form.control}
-                                name="category"
+                                name="category_name"
                                 render={({field}) => <SelectInput field={field}/>}
                             />
-                            {form.formState.errors.category && (
+                            {form.formState.errors.category_name && (
                                 <p className="text-red-500 text-[12px]">
-                                    {form.formState.errors.category.message}
+                                    {form.formState.errors.category_name.message}
                                 </p>
                             )}
                         </div>

@@ -4,7 +4,7 @@ import "react-toastify/ReactToastify.css"
 const Notification = () => {
   return (
     <div>
-        <ToastContainer position="bottom-right" />
+        <ToastContainer toastStyle={{ background: "black", color: "white" }} position="bottom-right" />
     </div>
   )
 }

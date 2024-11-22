@@ -7,27 +7,36 @@ import {
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
-  } from "@/components/ui/alert-dialog"
+  } from "@/components/ui/alert-dialog.tsx"
 
   interface Props {
     isAlertOpen: boolean;
-    setIsAlertOpen: (isAlertOpen: boolean) => void
+    setIsAlertOpen: (isAlertOpen: boolean) => void;
+    selectedId: number | null;
+    deleteExpense: (id: number) => void;
   }
   
-  function DeleteDialogBox({ isAlertOpen, setIsAlertOpen }:Props) {
+  function DeleteDialogBox({ isAlertOpen, setIsAlertOpen, deleteExpense, selectedId }:Props) {
+      const handleDelete = () => {
+          if (selectedId !== null) {
+              deleteExpense(selectedId);
+              setIsAlertOpen(false);
+          }
+      };
+
     return (
       <AlertDialog open={isAlertOpen} >
-        <AlertDialogContent>
+        <AlertDialogContent className="bg-zinc-900 border-zinc-800">
           <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
+            <AlertDialogTitle className="text-white">Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription className="text-zinc-600">
               This action cannot be undone. This will permanently delete your
               account and remove your data from our servers.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel onClick={() => setIsAlertOpen(false)}>Cancel</AlertDialogCancel>
-            <AlertDialogAction>Continue</AlertDialogAction>
+            <AlertDialogAction className="bg-purple hover:bg-red-600" onClick={handleDelete}>Continue</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

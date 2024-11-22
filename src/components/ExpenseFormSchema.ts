@@ -1,4 +1,5 @@
 import { z } from "zod";
+import {format} from "date-fns";
 
 export const ExpenseFormSchema = z.object({
     amount: z
@@ -7,12 +8,12 @@ export const ExpenseFormSchema = z.object({
     description: z
         .string({ required_error: "Description is required" })
         .min(1, "Description is required"),
-    category: z
+    category_name: z
         .string({ required_error: "Category is required" })
         .min(1, "Category is required"),
     date: z
         .date({ required_error: "Date is required" })
-        .transform((date) => date.toISOString().split("T")[0]),
+        .transform((date) => format(date, "yyyy-MM-dd")),
   });
 
 export type ExpenseFormData = z.infer<typeof ExpenseFormSchema>;
