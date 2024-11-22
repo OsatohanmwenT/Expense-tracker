@@ -2,17 +2,17 @@
 
 import { format, startOfDay, } from "date-fns"
 import { CalendarIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
+import { cn } from "@/lib/utils.ts"
+import { Button } from "@/components/ui/button.tsx"
+import { Calendar } from "@/components/ui/calendar.tsx"
 import {
   FormControl,
-} from "@/components/ui/form"
+} from "@/components/ui/form.tsx"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover.tsx"
 import {ControllerRenderProps, FieldValues} from "react-hook-form";
 
 interface CalendarInputProps {

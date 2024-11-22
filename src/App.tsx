@@ -7,6 +7,8 @@ import SignUpPage from "./pages/SignUpPage"
 import ProtectedRoutes from "./utils/ProtectedRoutes"
 import AuthProvider from "./utils/AuthProvider"
 import Dashboard from "./pages/Dashboard"
+import BudgetPage from "@/BudgetPage.tsx";
+import AnalyticsPage from "@/pages/AnalyticsPage.tsx";
 
 const queryClient = new QueryClient()
 
@@ -21,6 +23,14 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Dashboard />
+          },
+          {
+            path: "budget",
+            element: <BudgetPage />
+          },
+          {
+            path: "analytics",
+            element: <AnalyticsPage />
           }
         ]
       }

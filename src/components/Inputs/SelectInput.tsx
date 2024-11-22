@@ -6,8 +6,8 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import useCategories from "@/hooks/useCategories";
+} from "@/components/ui/select.tsx";
+import useCategories from "@/hooks/useCategories.tsx";
 
 function SelectInput({ field }: { field: any }) {
   const { data, isLoading, isError, error } = useCategories();

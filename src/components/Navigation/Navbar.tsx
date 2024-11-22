@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom"
 import logo from "@/assets/Vector.svg"
 import { links } from "@/constants"
-import { useAuth } from "@/utils/AuthProvider"
+import { useAuth } from "@/utils/AuthProvider.tsx"
 import {useEffect, useState} from "react";
 
 const Navbar = () => {
