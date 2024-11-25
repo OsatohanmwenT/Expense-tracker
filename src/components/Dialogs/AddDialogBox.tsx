@@ -1,4 +1,4 @@
-import { useMediaQuery } from "../../hooks/use-media-query.ts";
+import { useMediaQuery } from "@/hooks/use-media-query.ts";
 import { Button } from "@/components/ui/button.tsx";
 import {
   Drawer,

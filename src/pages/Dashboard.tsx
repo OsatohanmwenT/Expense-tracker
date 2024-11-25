@@ -1,11 +1,14 @@
-import ExpenseList from "@/components/ExpenseList"
+import ExpenseSection from "@/components/ExpenseSection.tsx"
 import {useAuth} from "@/utils/AuthProvider.tsx";
 import AnalyticsCard from "@/components/AnalyticsCard.tsx";
 import AnalyticsCardSkeleton from "@/components/skeletons/AnalyticsCardSkeleton.tsx";
 import BudgetToExpenseChart from "@/components/BudgetToExpenseChart.tsx";
+import useExpense from "@/hooks/useExpense.ts";
 
 const Dashboard = () => {
     const { user } = useAuth()
+    const { data, error } = useExpense(5);
+
   return (
     <div className="p-5">
 
@@ -26,7 +29,7 @@ const Dashboard = () => {
                 <p className="text-center text-red-400 font-semibold text-3xl py-10">No Budgets Found</p>
             </div>
         </div>
-        <ExpenseList />
+        <ExpenseSection data={data} error={error} />
     </div>
   )
 }

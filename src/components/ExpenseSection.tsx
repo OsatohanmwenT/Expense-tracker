@@ -2,13 +2,18 @@ import {MouseEvent, useEffect, useState} from "react"
 import DialogBox from "./Dialogs/DialogBox.tsx";
 import DeleteDialogBox from "./Dialogs/DeleteDialogBox.tsx";
 import AddDialogBox from "./Dialogs/AddDialogBox.tsx";
-import useExpense from "@/hooks/useExpense.ts";
 import Notification from "@/components/Notification.tsx";
 import useAxiosInstance from "@/services/apiClient.ts";
 import {toast} from "react-toastify";
 import {useQueryClient} from "@tanstack/react-query";
+import Expense from "@/entities/Expense.ts";
 
-const ExpenseList = () => {
+interface Props {
+    data: Expense[] | undefined;
+    error: Error | null;
+}
+
+const ExpenseSection = ({ data, error }: Props) => {
     const axiosInstance = useAxiosInstance();
     const queryClient = useQueryClient();
     const [openRow, setOpenRow] = useState<number | null>(null);
@@ -16,7 +21,6 @@ const ExpenseList = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isAddBoxOpen, setIsAddBoxOpen] = useState(false);
     const [isAlertOpen, setIsAlertOpen] = useState(false);
-    const { data, error } = useExpense();
 
     useEffect(() => {
         const closePopup = () => setOpenRow(null);
@@ -27,10 +31,12 @@ const ExpenseList = () => {
         };
     }, []);
 
-    function toggleAction(e: MouseEvent, id: number) {
+    function toggleAction(e: MouseEvent, id: number | undefined) {
         e.stopPropagation();
-        setSelectedId(id);
-        setOpenRow((prev) => (prev === id ? null : id))
+        if(id) {
+            setSelectedId(id);
+            setOpenRow((prev) => (prev === id ? null : id))
+        }
     }
 
     function openDialog() {
@@ -73,7 +79,7 @@ const ExpenseList = () => {
             {error ? (
                 <tr>
                     <td colSpan={5} className="text-center text-red-400 font-semibold text-3xl py-10">
-                        {error?.message || "No expenses found."}
+                        {error?.message || "No expenses found.  Click Add Expense to create one"}
                     </td>
                 </tr>
             )
@@ -128,4 +134,4 @@ const ExpenseList = () => {
   )
 }
 
-export default ExpenseList
+export default ExpenseSection

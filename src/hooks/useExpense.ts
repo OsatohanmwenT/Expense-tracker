@@ -2,12 +2,13 @@ import {useQuery} from "@tanstack/react-query";
 import Expense from "@/entities/Expense.ts";
 import useAxiosInstance from "@/services/apiClient.ts";
 
-const useExpense = () => {
-    const axiosInstance = useAxiosInstance()
 
+const useExpense = (limit?: number) => {
+    const axiosInstance = useAxiosInstance()
+    const url = limit ? `/expenses/?limit=${limit}` : `/expenses`;
     const fetchData = async () => {
         try {
-            const response = await axiosInstance.get("/expenses/?offset=0");
+            const response = await axiosInstance.get(url);
             return response.data as Expense[];
         } catch (error: any) {
             const errorMessage: string =
@@ -17,7 +18,7 @@ const useExpense = () => {
     };
 
     return useQuery<Expense[]>({
-        queryKey: ["expenses"],
+        queryKey: ["expenses", limit],
         queryFn: fetchData,
         staleTime: 60 * 1000,
         retry: 1

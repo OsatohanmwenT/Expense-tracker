@@ -27,7 +27,7 @@ const AuthProvider = ({ children }: Props) => {
       setLoading(true)
       setError("")
       try{
-      const res = await fetch("http://127.0.0.1:8000/auth/login",{
+      const res = await fetch("http://127.0.0.1:8000/auth/user/login",{
         method: "POST",
         headers: {
           'Accept': 'application/json',
