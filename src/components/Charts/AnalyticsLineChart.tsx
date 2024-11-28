@@ -1,7 +1,8 @@
 "use client"
 
 import { TrendingUp } from "lucide-react"
-import {CartesianGrid, Line, LineChart, XAxis, YAxis} from "recharts"
+import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
+import { format } from "date-fns"
 
 import {
     Card,
@@ -18,79 +19,79 @@ import {
     ChartTooltipContent,
 } from "@/components/ui/chart"
 import {AnalyticsExpense} from "@/entities/Analytics.ts";
-import {formatDate} from "date-fns";
 
 const chartConfig = {
-    desktop: {
-        label: "Desktop",
+    total: {
+        label: "Total Expenses",
         color: "hsl(var(--chart-1))",
-    },
-    mobile: {
-        label: "Mobile",
-        color: "hsl(var(--chart-2))",
-    },
+    }
 } satisfies ChartConfig
 
 interface Props {
-    chartData: AnalyticsExpense[]
+    chartData: AnalyticsExpense[];
 }
 
 function AnalyticsLineChart({ chartData }: Props) {
-    if (!chartData) {
-        return null
-    }
     return (
         <Card className="dark">
             <CardHeader>
-                <CardTitle>Line Chart - Daily</CardTitle>
-                <CardDescription>{formatDate(Date.now(), "MMMM")} 2024</CardDescription>
+                <CardTitle>Daily Expenses</CardTitle>
+                <CardDescription>{format(new Date(chartData[0].date), "MMMM yyyy")}</CardDescription>
             </CardHeader>
-            <CardContent>
-                <ChartContainer config={chartConfig}>
-                    <LineChart
-                        accessibilityLayer
-                        data={chartData}
-                        margin={{
-                            top: 12,
-                            left: 10,
-                            right: 10,
-                        }}
-                    >
-                        <CartesianGrid  />
-                        <YAxis />
-                        <XAxis
-                            dataKey="date"
-                            tickLine={false}
-                            axisLine={false}
-                            tickMargin={8}
-                            tickFormatter={(value) => formatDate(value,"PP").slice(0,6)}
-                            padding={{ left: 9 }}
-                        />
-                        <ChartTooltip
-                            cursor={false}
-                            content={<ChartTooltipContent hideLabel />}
-                        />
-                        <Line
-                            dataKey="total"
-                            type="natural"
-                            stroke="var(--color-desktop)"
-                            strokeWidth={2}
-                            dot={{
-                                fill: "var(--color-desktop)",
+            <CardContent className="h-[400px]">
+                <ChartContainer className="h-[400px] w-full" config={chartConfig}>
+                    <ResponsiveContainer width="100%" height="100%">
+                        <LineChart
+                            data={chartData}
+                            margin={{
+                                top: 12,
+                                right: 10,
+                                left: 10,
                             }}
-                            activeDot={{
-                                r: 6,
-                            }}
-                        />
-                    </LineChart>
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <YAxis
+                                scale="log"
+                                domain={['auto', 'auto']}
+                                tickFormatter={(value) => `$${value.toLocaleString()}`}
+                            />
+                            <XAxis
+                                dataKey="date"
+                                tickLine={false}
+                                axisLine={false}
+                                textAnchor="end"
+                                tickMargin={10}
+                                tickFormatter={(value) => format(new Date(value), "MMM dd")}
+                            />
+                            <ChartTooltip
+                                cursor={false}
+                                content={<ChartTooltipContent hideLabel />}
+                            />
+                            <Line
+                                dataKey="total"
+                                type="monotone"
+                                stroke="var(--color-total)"
+                                strokeWidth={2}
+                                dot={{
+                                    fill: "var(--color-total)",
+                                    r: 4,
+                                }}
+                                activeDot={{
+                                    r: 6,
+                                    stroke: "var(--background)",
+                                    strokeWidth: 2,
+                                }}
+                            />
+                        </LineChart>
+                    </ResponsiveContainer>
                 </ChartContainer>
             </CardContent>
-            <CardFooter className="flex-col items-start gap-2 text-sm">
+            <CardFooter className="flex-col mt-2 items-start gap-2 text-sm">
                 <div className="flex gap-2 font-medium leading-none">
                     Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
                 </div>
                 <div className="leading-none text-muted-foreground">
-                    Showing total visitors for the last 6 months
+                    Showing total daily expenses for the last 6 months
                 </div>
             </CardFooter>
         </Card>
@@ -98,3 +99,4 @@ function AnalyticsLineChart({ chartData }: Props) {
 }
 
 export default AnalyticsLineChart;
+

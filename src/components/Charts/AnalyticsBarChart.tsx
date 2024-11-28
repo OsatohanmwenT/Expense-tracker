@@ -48,7 +48,7 @@ function AnalyticsBarChart() {
                 <CardDescription>Budget to Expense</CardDescription>
             </CardHeader>
             <CardContent className="h-[400px]">
-                <ChartContainer className="h-[380px] w-full" config={chartConfig}>
+                <ChartContainer className="h-[400px] w-full" config={chartConfig}>
                     <BarChart accessibilityLayer data={chartData}>
                         <CartesianGrid vertical={false} />
                         <XAxis
@@ -80,7 +80,7 @@ function AnalyticsBarChart() {
                     Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
                 </div>
                 <div className="leading-none text-muted-foreground">
-                    Showing total visitors for the last 6 months
+                    Showing total daily expenses for the last 6 months
                 </div>
             </CardFooter>
         </Card>
