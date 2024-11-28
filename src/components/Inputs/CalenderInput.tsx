@@ -13,10 +13,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover.tsx"
-import {ControllerRenderProps, FieldValues} from "react-hook-form";
+import {FieldValues} from "react-hook-form";
 
 interface CalendarInputProps {
-  field: ControllerRenderProps<FieldValues, "date">
+  field: FieldValues
 }
 
 function CalenderInput({ field }: CalendarInputProps) {

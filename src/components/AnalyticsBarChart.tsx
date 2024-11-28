@@ -1,7 +1,7 @@
 "use client"
 
 import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import {Bar, BarChart, CartesianGrid, XAxis} from "recharts"
 
 import {
     Card,
@@ -43,7 +43,7 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
-function BudgetToExpenseChart() {
+function AnalyticsBarChart() {
     return (
         <Card className="dark">
             <CardHeader>
@@ -90,5 +90,5 @@ function BudgetToExpenseChart() {
     )
 }
 
-export default BudgetToExpenseChart
+export default AnalyticsBarChart
 

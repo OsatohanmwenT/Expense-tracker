@@ -7,4 +7,10 @@ interface Expense {
   category_id?:  number;
 }
 
+export interface ExpenseUpdate {
+  amount: string;
+  description: string;
+  category: string;
+}
+
 export default Expense

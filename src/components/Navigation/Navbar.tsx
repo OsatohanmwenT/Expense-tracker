@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom"
 import logo from "@/assets/Vector.svg"
 import { links } from "@/constants"
 import { useAuth } from "@/utils/AuthProvider.tsx"
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -21,7 +21,7 @@ const Navbar = () => {
         };
     }, []);
 
-    function togglePopup (e: MouseEvent) {
+    function togglePopup(e: React.MouseEvent<HTMLButtonElement>) {
         e.stopPropagation();
         setIsOpen(prevState => !prevState);
     }
@@ -48,8 +48,8 @@ const Navbar = () => {
                     <span className="font-semibold text-white/80 ml-2 capitalize">{user?.username}</span>
                 </button>
                 <div className={`${isOpen ? "top-14 opacity-100 z-10" : "top-[50px] opacity-0 -z-10"} bg-zinc-900 shadow transition-all right-1 absolute rounded-md`}>
-                    <button onClick={logout} className="px-5 text-white py-2">Logout</button>
-                    <button className="px-5 py-2 text-white text-nowrap">Dark mode</button>
+                    <button onClick={logout} className="px-5 w-full text-left text-white py-2">Logout</button>
+                    <button className="px-5 py-2 w-full text-left text-white text-nowrap">Dark mode</button>
                 </div>
             </div>
         </nav>

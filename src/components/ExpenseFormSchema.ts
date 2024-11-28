@@ -4,8 +4,7 @@ import {format} from "date-fns";
 export const ExpenseFormSchema = z.object({
     amount: z
         .string({ required_error: "Amount is required" })
-        .min(1, "Amount is required")
-        .transform((value) => parseFloat(value)),
+        .min(1, "Amount is required"),
     description: z
         .string({ required_error: "Description is required" })
         .min(1, "Description is required"),
