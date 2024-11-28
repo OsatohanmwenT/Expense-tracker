@@ -19,26 +19,23 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/ui/chart.tsx"
-const chartData = [
-    { budgetName: "January", totalAmount: 2300, totalSpent: 1450 },
-    { budgetName: "February", totalAmount: 3005, totalSpent: 1050 },
-    { budgetName: "March", totalAmount: 2397, totalSpent: 1200 },
-    { budgetName: "April", totalAmount: 730, totalSpent: 590 },
-    { budgetName: "May", totalAmount: 1009, totalSpent: 630 },
-    { budgetName: "June", totalAmount: 2104, totalSpent: 140 },
-    { budgetName: "April", totalAmount: 930, totalSpent: 390 },
-    { budgetName: "April", totalAmount: 730, totalSpent: 490 },
-    { budgetName: "April", totalAmount: 563, totalSpent: 190 },
-    { budgetName: "April", totalAmount: 438, totalSpent: 290 },
+import fillData from "@/utils/FillData.ts";
+
+let chartData = [
+    { budgetName: "January", totalAmount: 2300, totalSpent: 1450 }
 ]
+
+if (chartData.length < 10) {
+    chartData = fillData(chartData, 10);
+}
 
 const chartConfig = {
     desktop: {
-        label: "Desktop",
+        label: "remaining amount",
         color: "hsl(var(--chart-1))",
     },
     mobile: {
-        label: "Mobile",
+        label: "expense",
         color: "hsl(var(--chart-2))",
     },
 } satisfies ChartConfig
