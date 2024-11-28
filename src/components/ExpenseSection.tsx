@@ -70,10 +70,10 @@ const ExpenseSection = ({ data, error }: Props) => {
         <table className="w-full mt-5 border-2 border-zinc-800 tab mx-auto text-left">
             <thead>
                 <tr className="border-b-[1px] text-white  border-zinc-900">
-                    <th className="h-12 font-semibold px-2 md:px-4">Amount</th>
-                    <th className="h-12 font-semibold px-2 md:px-4">Category</th>
-                    <th className="h-12 font-semibold px-2 md:px-4">Description</th>
-                    <th className="h-12 font-semibold px-2 md:px-4">Date Added</th>
+                    <th className="h-12 font-semibold max-sm:text-sm px-2 md:px-4">Amount</th>
+                    <th className="h-12 font-semibold max-sm:text-sm px-2 md:px-4">Category</th>
+                    <th className="h-12 font-semibold max-sm:text-sm px-2 md:px-4">Description</th>
+                    <th className="h-12 font-semibold max-sm:text-sm px-2 md:px-4">Date Added</th>
                 </tr>
             </thead>
             <tbody>

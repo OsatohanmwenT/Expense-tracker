@@ -2,7 +2,6 @@ import {useQuery} from "@tanstack/react-query";
 import Expense from "@/entities/Expense.ts";
 import useAxiosInstance from "@/services/apiClient.ts";
 
-
 const useExpense = (limit?: number) => {
     const axiosInstance = useAxiosInstance()
     const url = limit ? `/expenses/?limit=${limit}` : `/expenses`;

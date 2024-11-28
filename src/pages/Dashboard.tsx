@@ -2,7 +2,7 @@ import ExpenseSection from "@/components/ExpenseSection.tsx"
 import {useAuth} from "@/utils/AuthProvider.tsx";
 import AnalyticsCard from "@/components/AnalyticsCard.tsx";
 import AnalyticsCardSkeleton from "@/components/skeletons/AnalyticsCardSkeleton.tsx";
-import AnalyticsBarChart from "@/components/AnalyticsBarChart.tsx";
+import AnalyticsBarChart from "@/components/Charts/AnalyticsBarChart.tsx";
 import useExpense from "@/hooks/useExpense.ts";
 
 const Dashboard = () => {
