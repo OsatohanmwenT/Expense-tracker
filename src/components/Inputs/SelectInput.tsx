@@ -7,10 +7,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select.tsx";
+import { useExpense } from "@/context/ExpenseProvider";
 import useCategories from "@/hooks/useCategories.tsx";
+import {FieldValues} from "react-hook-form";
 
-function SelectInput({ field }: { field: any }) {
+function SelectInput({ field }: { field: FieldValues }) {
   const { data, isLoading, isError, error } = useCategories();
+  const { openCategoryBox } = useExpense()
 
   if (isLoading) {
     return <div>Loading categories...</div>;
@@ -33,7 +36,7 @@ function SelectInput({ field }: { field: any }) {
               {category.name}
             </SelectItem>
           ))}
-          <button className="text-white py-1 px-2 text-left capitalize rounded-md hover:bg-white w-full hover:text-black">other</button>
+          <button onClick={openCategoryBox} className="text-white py-1 px-2 text-left capitalize rounded-md hover:bg-white w-full hover:text-black">other</button>
         </SelectGroup>
       </SelectContent>
     </Select>

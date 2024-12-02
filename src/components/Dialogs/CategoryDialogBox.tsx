@@ -33,11 +33,11 @@ export function CategoryDialogBox({ isDialogOpen, setIsDialogOpen }: DialogDemoP
         <form className={cn("grid items-start gap-4", className)}>
             <div className="grid gap-2">
                 <Label className="text-purple" htmlFor="category name">Category Name</Label>
-                <Input className="text-white border-zinc-800" id="text" />
+                <Input className="text-white border-white" id="text" />
             </div>
             <div className="grid gap-2">
                 <Label className="text-purple" htmlFor="category description">Description</Label>
-                <Input className="text-white border-zinc-800" id="category description" />
+                <Input className="text-white border-white" id="category description" />
             </div>
             <Button className="bg-purple hover:bg-purple/80" type="submit">Add</Button>
         </form>

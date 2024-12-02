@@ -13,6 +13,7 @@ interface ExpenseContextType {
   setIsCategoryOpen: (isOpen: boolean) => void;
   setIsAddBoxOpen: (isOpen: boolean) => void;
   setIsAlertOpen: (isOpen: boolean) => void;
+  openCategoryBox: () => void;
 }
 
 const ExpenseContext = createContext<ExpenseContextType | undefined>(undefined);
@@ -35,6 +36,11 @@ export const ExpenseProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const openCategoryBox = () => {
+    setIsAddBoxOpen(false)
+    setIsCategoryOpen(true)
+  }
+
   const context = {
     deleteExpense,
     setIsAddBoxOpen,
@@ -45,6 +51,7 @@ export const ExpenseProvider = ({ children }: { children: ReactNode }) => {
     setIsAlertOpen,
     setIsCategoryOpen,
     setIsDialogOpen,
+    openCategoryBox
   };
 
   return (

@@ -40,7 +40,7 @@ function AddDialogBox({
     resolver: zodResolver(ExpenseFormSchema),
     defaultValues: {
       amount: "",
-      description: "",
+      name: "",
       category_name: "",
       date: ""
     },

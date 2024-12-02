@@ -3,12 +3,10 @@ import DialogBox from "./Dialogs/DialogBox.tsx";
 import DeleteDialogBox from "./Dialogs/DeleteDialogBox.tsx";
 import AddDialogBox from "./Dialogs/AddDialogBox.tsx";
 import Notification from "@/components/Notification.tsx";
-import useAxiosInstance from "@/services/apiClient.ts";
-import {toast} from "react-toastify";
-import {useQueryClient} from "@tanstack/react-query";
 import Expense from "@/entities/Expense.ts";
 import ActionBox from "@/components/ActionBox.tsx";
 import CategoryDialogBox from "./Dialogs/CategoryDialogBox.tsx";
+import { useExpense } from "@/context/ExpenseProvider.tsx";
 
 interface Props {
     data: Expense[] | undefined;
@@ -17,14 +15,9 @@ interface Props {
 }
 
 const ExpenseSection = ({ data, error, isLoading }: Props) => {
-    const axiosInstance = useAxiosInstance();
-    const queryClient = useQueryClient();
     const [openRow, setOpenRow] = useState<number | null>(null);
     const [selectedId, setSelectedId] = useState<number | null>(null)
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [isCategoryOpen, setIsCategoryOpen] = useState(false);
-    const [isAddBoxOpen, setIsAddBoxOpen] = useState(false);
-    const [isAlertOpen, setIsAlertOpen] = useState(false);
+    const { isAddBoxOpen, isAlertOpen, isDialogOpen, setIsAddBoxOpen, setIsDialogOpen, setIsAlertOpen, isCategoryOpen, setIsCategoryOpen, deleteExpense } = useExpense()
 
     useEffect(() => {
         const closePopup = () => setOpenRow(null);
@@ -49,20 +42,6 @@ const ExpenseSection = ({ data, error, isLoading }: Props) => {
 
     function openAlertDialog() {
         setIsAlertOpen(true);
-    }
-
-
-    async function deleteExpense(id: number): Promise<void> {
-        try {
-            await axiosInstance.delete(`/expenses/${id}`);
-            toast.success("Expense deleted!");
-            queryClient.invalidateQueries({
-                queryKey: [["expenses", "summary"]],
-            })
-            setSelectedId(null)
-        } catch {
-            toast.error("Failed to delete the expense.");
-        }
     }
 
   return (
