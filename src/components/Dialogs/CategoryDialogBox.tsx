@@ -46,7 +46,7 @@ export function CategoryDialogBox({ isDialogOpen, setIsDialogOpen }: DialogDemoP
     if (isDesktop) {
         return (
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                <DialogContent className="sm:max-w-[425px] border-zinc-800 bg-zinc-900">
+                <DialogContent className="sm:max-w-[425px] text-white border-zinc-800 bg-zinc-900">
                     <DialogHeader>
                         <DialogTitle className="text-white">Edit Profile</DialogTitle>
                         <DialogDescription className="text-zinc-400">
@@ -61,7 +61,7 @@ export function CategoryDialogBox({ isDialogOpen, setIsDialogOpen }: DialogDemoP
 
     return (
         <Drawer open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-            <DrawerContent>
+            <DrawerContent className="dark text-white">
                 <DrawerHeader className="text-left">
                     <DrawerTitle>Add Category</DrawerTitle>
                     <DrawerDescription>
