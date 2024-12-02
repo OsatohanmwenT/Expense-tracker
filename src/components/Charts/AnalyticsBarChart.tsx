@@ -19,14 +19,14 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/ui/chart.tsx"
-import fillData from "@/utils/FillData.ts";
+import fillData, { FillDataType } from "@/utils/FillData.ts";
 
-let chartData = [
-    { budgetName: "January", totalAmount: 2300, totalSpent: 1450 }
-]
 
-if (chartData.length < 10) {
-    chartData = fillData(chartData, 10);
+
+let chartData: FillDataType[] = []
+
+if (chartData.length < 12) {
+    chartData = fillData(chartData, 12);
 }
 
 const chartConfig = {
@@ -52,7 +52,7 @@ function AnalyticsBarChart() {
                     <BarChart accessibilityLayer data={chartData}>
                         <CartesianGrid vertical={false} />
                         <XAxis
-                            dataKey="budgetName"
+                            dataKey="month"
                             tickLine={false}
                             tickMargin={10}
                             axisLine={true}

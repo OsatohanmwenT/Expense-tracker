@@ -90,7 +90,7 @@ const ExpenseSection = ({ data, error }: Props) => {
                         <tr className="border-b-[1px] text-white border-zinc-800 relative" key={tableItem.id}>
                             <td className="px-2 max-md:text-sm md:px-4 py-4 align-middle">₦{tableItem.amount}</td>
                             <td className="px-2 max-md:text-sm md:px-4 py-4 align-middle">{tableItem.category_name}</td>
-                            <td className="px-2 max-md:text-sm md:px-4 py-4 align-middle">{tableItem.description}</td>
+                            <td className="px-2 max-md:text-sm md:px-4 py-4 align-middle">{tableItem.name}</td>
                             <td className="px-2 max-md:text-sm md:px-4 py-4 align-middle">{tableItem.date}</td>
                             <td className="px-2 max-md:text-sm md:px-4 py-4 align-middle">
                                 <button

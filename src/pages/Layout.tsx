@@ -4,7 +4,7 @@ import TabBar from "@/components/Navigation/TabBar.tsx";
 
 const Layout = () => {
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-neutral-950">
       <Navbar />
         <TabBar />
       <main>

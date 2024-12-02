@@ -1,13 +1,15 @@
 import ExpenseSection from "@/components/ExpenseSection.tsx"
 import {useAuth} from "@/utils/AuthProvider.tsx";
 import AnalyticsCard from "@/components/AnalyticsCard.tsx";
-import AnalyticsCardSkeleton from "@/components/skeletons/AnalyticsCardSkeleton.tsx";
 import AnalyticsBarChart from "@/components/Charts/AnalyticsBarChart.tsx";
 import useExpense from "@/hooks/useExpense.ts";
+import useAnalytics from "@/hooks/useAnalytics.ts";
+import {BudgetSummary} from "@/entities/Analytics.ts";
 
 const Dashboard = () => {
     const { user } = useAuth()
     const { data, error } = useExpense(5);
+    const { data: analytics } = useAnalytics<BudgetSummary>("summary")
 
   return (
     <div className="p-5">
@@ -15,10 +17,10 @@ const Dashboard = () => {
         <h1 className="text-xl lg:text-3xl text-white font-semibold">Welcome back, <span className="capitalize">{user?.username}</span></h1>
         <p className="text-purple mb-5">How was your day?</p>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-            <AnalyticsCardSkeleton />
-            <AnalyticsCard />
-            <AnalyticsCard />
-            <AnalyticsCard />
+            <AnalyticsCard name="Total Amount of Expenses" total={analytics?.total_expenses} />
+            <AnalyticsCard name="Total Budget" total={analytics?.budget_limit} />
+            <AnalyticsCard name="Number of budget" total={1000} />
+            <AnalyticsCard name="Amount remaining" total={analytics?.budget_limit &&  (analytics?.budget_limit - analytics?.total_expenses) || 0} />
         </div>
         <div className="grid grid-cols-1 max-lg:gap-x-0 gap-4 md:grid-cols-2 lg:grid-cols-3 mb-5">
             <div className="col-span-1 row-span-1 md:col-span-2">

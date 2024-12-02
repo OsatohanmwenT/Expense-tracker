@@ -29,10 +29,11 @@ function SelectInput({ field }: { field: any }) {
         <SelectGroup>
           <SelectLabel className="text-white">Category</SelectLabel>
           {data?.map((category) => (
-            <SelectItem className="text-white" key={category.id} value={category.name}>
+            <SelectItem className="text-white capitalize" key={category.id} value={category.name}>
               {category.name}
             </SelectItem>
           ))}
+          <button className="text-white py-1 px-2 text-left capitalize rounded-md hover:bg-white w-full hover:text-black">other</button>
         </SelectGroup>
       </SelectContent>
     </Select>

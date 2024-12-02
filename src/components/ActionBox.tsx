@@ -8,8 +8,8 @@ interface Props {
 const ActionBox = ({ openRow, openDialog, openAlertDialog, tableItemId }: Props) => {
     return (
         <div
-            className={`absolute mt-2 text-white right-10 sm:right-12 md:right-24 -translate-x-5 shadow-lg bg-zinc-900 rounded-lg flex flex-col transition-all ${
-                openRow === tableItemId ? "opacity-100 z-10" : "opacity-0 translate-y-2 -z-10"
+            className={`absolute mt-2 text-white right-10 sm:right-12 md:right-24 -translate-x-5 shadow-lg bg-zinc-900 rounded-lg flex flex-col ${
+                openRow === tableItemId ? "block z-10" : "hidden"
             }`}
         >
             <p className="pl-2 w-[100px] py-3 font-semibold border-zinc-800 border-b-[1px]">Action</p>

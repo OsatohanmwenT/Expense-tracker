@@ -32,11 +32,11 @@ const ExpenseForm = React.memo(({ className, form, onSubmit }: ExpenseFormProps)
                             )}
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="description">Description</Label>
-                            <Input id="description" {...form.register("description")} />
-                            {form.formState.errors.description && (
+                            <Label htmlFor="expense_name">Expense name</Label>
+                            <Input id="expense_name" {...form.register("name")} />
+                            {form.formState.errors.name && (
                                 <p className="text-red-500 text-[12px]">
-                                    {form.formState.errors.description.message}
+                                    {form.formState.errors.name.message}
                                 </p>
                             )}
                         </div>

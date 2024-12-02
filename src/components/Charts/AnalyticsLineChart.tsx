@@ -1,5 +1,3 @@
-"use client"
-
 import { TrendingUp } from "lucide-react"
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
 import { format } from "date-fns"
@@ -53,7 +51,7 @@ function AnalyticsLineChart({ chartData }: Props) {
                             <YAxis
                                 scale="log"
                                 domain={['auto', 'auto']}
-                                tickFormatter={(value) => `$${value.toLocaleString()}`}
+                                tickFormatter={(value) => `₦${value.toLocaleString()}`}
                             />
                             <XAxis
                                 dataKey="date"

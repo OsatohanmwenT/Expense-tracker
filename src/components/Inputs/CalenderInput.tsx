@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/popover.tsx"
 import {FieldValues} from "react-hook-form";
 
-interface CalendarInputProps {
+export interface CalendarInputProps {
   field: FieldValues
 }
 

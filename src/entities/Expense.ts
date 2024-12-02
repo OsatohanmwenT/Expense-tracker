@@ -1,6 +1,6 @@
 interface Expense {
   amount: string;
-  description: string;
+  name: string;
   id?: number;
   category_name: string;
   date: string;
