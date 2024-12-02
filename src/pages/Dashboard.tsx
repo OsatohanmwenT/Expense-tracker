@@ -1,5 +1,5 @@
 import ExpenseSection from "@/components/ExpenseSection.tsx"
-import {useAuth} from "@/utils/AuthProvider.tsx";
+import {useAuth} from "@/context/AuthProvider.tsx";
 import AnalyticsCard from "@/components/AnalyticsCard.tsx";
 import AnalyticsBarChart from "@/components/Charts/AnalyticsBarChart.tsx";
 import useExpense from "@/hooks/useExpense.ts";
@@ -8,7 +8,7 @@ import {BudgetSummary} from "@/entities/Analytics.ts";
 
 const Dashboard = () => {
     const { user } = useAuth()
-    const { data, error } = useExpense(5);
+    const { data, error, isLoading } = useExpense(5);
     const { data: analytics } = useAnalytics<BudgetSummary>("summary")
 
   return (
@@ -19,7 +19,7 @@ const Dashboard = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
             <AnalyticsCard name="Total Amount of Expenses" total={analytics?.total_expenses} />
             <AnalyticsCard name="Total Budget" total={analytics?.budget_limit} />
-            <AnalyticsCard name="Number of budget" total={1000} />
+            <AnalyticsCard name="Number of budget" total={analytics?.expenses_by_category.length} />
             <AnalyticsCard name="Amount remaining" total={analytics?.budget_limit &&  (analytics?.budget_limit - analytics?.total_expenses) || 0} />
         </div>
         <div className="grid grid-cols-1 max-lg:gap-x-0 gap-4 md:grid-cols-2 lg:grid-cols-3 mb-5">
@@ -31,7 +31,7 @@ const Dashboard = () => {
                 <p className="text-center text-red-400 font-semibold text-3xl py-10">No Budgets Found</p>
             </div>
         </div>
-        <ExpenseSection data={data} error={error} />
+        <ExpenseSection isLoading={isLoading} data={data} error={error} />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useContext, useState } from "react"
-import NewUser from "../entities/NewUser";
-import LoginUser from "../entities/LoginUser";
-import AuthUser from "../entities/AuthUser";
+import NewUser from "../entities/NewUser.ts";
+import LoginUser from "../entities/LoginUser.ts";
+import AuthUser from "../entities/AuthUser.ts";
 
 interface Props {
     children: ReactNode

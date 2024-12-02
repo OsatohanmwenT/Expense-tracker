@@ -25,7 +25,7 @@ function AnalyticsPieChart({ data }: { data: ChartDataType[] }) {
   if (!data || data.length === 0) {
     return (
       <p className="text-center text-muted-foreground">
-        No data available to display.
+        No data available to display on pie chart.
       </p>
     );
   }
@@ -49,7 +49,7 @@ function AnalyticsPieChart({ data }: { data: ChartDataType[] }) {
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[400px] [&_.recharts-text]:fill-white"
+          className="mx-auto aspect-square w-full max-h-[400px] [&_.recharts-text]:fill-white"
         >
           <PieChart>
             <ChartTooltip
@@ -60,7 +60,7 @@ function AnalyticsPieChart({ data }: { data: ChartDataType[] }) {
               dataKey="total"
               nameKey="category_name"
               label={({ total }) => {
-                const percentage = ((total / totalValue) * 100).toFixed(2);
+                const percentage = ((total / totalValue) * 100).toFixed(1);
                 return `${percentage}%`;
               }}
             >

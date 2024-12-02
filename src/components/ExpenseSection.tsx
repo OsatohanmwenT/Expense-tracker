@@ -8,18 +8,21 @@ import {toast} from "react-toastify";
 import {useQueryClient} from "@tanstack/react-query";
 import Expense from "@/entities/Expense.ts";
 import ActionBox from "@/components/ActionBox.tsx";
+import CategoryDialogBox from "./Dialogs/CategoryDialogBox.tsx";
 
 interface Props {
     data: Expense[] | undefined;
+    isLoading: boolean
     error: Error | null;
 }
 
-const ExpenseSection = ({ data, error }: Props) => {
+const ExpenseSection = ({ data, error, isLoading }: Props) => {
     const axiosInstance = useAxiosInstance();
     const queryClient = useQueryClient();
     const [openRow, setOpenRow] = useState<number | null>(null);
     const [selectedId, setSelectedId] = useState<number | null>(null)
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isCategoryOpen, setIsCategoryOpen] = useState(false);
     const [isAddBoxOpen, setIsAddBoxOpen] = useState(false);
     const [isAlertOpen, setIsAlertOpen] = useState(false);
 
@@ -48,12 +51,13 @@ const ExpenseSection = ({ data, error }: Props) => {
         setIsAlertOpen(true);
     }
 
+
     async function deleteExpense(id: number): Promise<void> {
         try {
             await axiosInstance.delete(`/expenses/${id}`);
             toast.success("Expense deleted!");
             queryClient.invalidateQueries({
-                queryKey: ["expenses"]
+                queryKey: [["expenses", "summary"]],
             })
             setSelectedId(null)
         } catch {
@@ -77,15 +81,19 @@ const ExpenseSection = ({ data, error }: Props) => {
                 </tr>
             </thead>
             <tbody>
-            {error ? (
-                <tr>
-                    <td colSpan={5} className="text-center text-red-400 font-semibold text-3xl py-10">
-                        {error?.message || "No expenses found.  Click Add Expense to create one"}
-                    </td>
-                </tr>
-            )
-            :
-                (
+            {isLoading ? (
+                    <tr>
+                        <td colSpan={5} className="text-center text-white font-semibold text-3xl py-10">
+                            Loading expenses...
+                        </td>
+                    </tr>
+                ) : error ? (
+                    <tr>
+                        <td colSpan={5} className="text-center text-red-400 font-semibold text-3xl py-10">
+                            {error?.message || "No expenses found. Click Add Expense to create one."}
+                        </td>
+                    </tr>
+                ) : (
                     data?.map((tableItem) => (
                         <tr className="border-b-[1px] text-white border-zinc-800 relative" key={tableItem.id}>
                             <td className="px-2 max-md:text-sm md:px-4 py-4 align-middle">₦{tableItem.amount}</td>
@@ -102,14 +110,14 @@ const ExpenseSection = ({ data, error }: Props) => {
                                     <div className="w-1 h-1 md:w-[6px] md:h-[6px] bg-white rounded-full"></div>
                                 </button>
                             </td>
-                                <ActionBox openRow={openRow} tableItemId={tableItem.id} openDialog={openDialog} openAlertDialog={openAlertDialog} />
+                            <ActionBox openRow={openRow} tableItemId={tableItem.id} openDialog={openDialog} openAlertDialog={openAlertDialog} />
                         </tr>
                     ))
-                )
-            }
+                )}
             </tbody>
         </table>
         <Notification />
+        <CategoryDialogBox isDialogOpen={isCategoryOpen} setIsDialogOpen={setIsCategoryOpen} />
         <AddDialogBox isAddBoxOpen={isAddBoxOpen} setIsAddBoxOpen={setIsAddBoxOpen} />
         <DialogBox isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} />
         <DeleteDialogBox isAlertOpen={isAlertOpen} setIsAlertOpen={setIsAlertOpen} deleteExpense={deleteExpense} selectedId={selectedId} />

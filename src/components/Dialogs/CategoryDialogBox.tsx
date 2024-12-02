@@ -50,7 +50,7 @@ export function CategoryDialogBox({ isDialogOpen, setIsDialogOpen }: DialogDemoP
                     <DialogHeader>
                         <DialogTitle className="text-white">Edit Profile</DialogTitle>
                         <DialogDescription className="text-zinc-400">
-                            Make changes to your profile here. Click save when you're done.
+                            Click save when you're done.
                         </DialogDescription>
                     </DialogHeader>
                     <ProfileForm />

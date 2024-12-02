@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import loginImage from "../assets/simone-hutsch-2H3OuzkF-SY-unsplash 1.png"
 import { SubmitHandler, useForm } from "react-hook-form"
 import NewUser from "../entities/NewUser"
-import { useAuth } from "../utils/AuthProvider"
+import { useAuth } from "../context/AuthProvider.tsx"
 import { toast } from "react-toastify"
 import Notification from "../components/Notification"
 

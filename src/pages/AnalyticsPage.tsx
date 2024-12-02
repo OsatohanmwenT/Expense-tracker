@@ -8,8 +8,9 @@ import AnalyticsPieChart from "@/components/Charts/AnalyticsPieChart";
 const AnalyticsPage = () => {
     const { data: daily, isLoading } = useAnalytics<AnalyticsDaily>("daily")
     const { data: analytics } = useAnalytics<BudgetSummary>("summary")
-    if (daily  === undefined) {
-        return null
+    
+    if (!daily || !analytics) {
+        return <p className="font-semibold text-3xl text-white text-center">No data available.</p>;
     }
     
     return (
@@ -19,16 +20,16 @@ const AnalyticsPage = () => {
                 <div className="xl:col-span-2">
                     {isLoading ? (<p className="font-semibold text-3xl text-white text-center">Loading...</p>)
                         :
-                        (daily.expenses.length > 0 &&
+                        (
                             <AnalyticsLineChart chartData={daily.expenses} />
                         )
                     }
                 </div>
                 
                 <AnalyticsBarChart  />
-                <AnalyticsPieChart data={analytics?.expenses_by_category} />
+                <AnalyticsPieChart data={analytics.expenses_by_category} />
             </div>
-                <Notification />
+            <Notification />
         </div>
     )
 }

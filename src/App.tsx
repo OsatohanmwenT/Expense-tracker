@@ -5,11 +5,11 @@ import Layout from "./pages/Layout"
 import LoginPage from "./pages/LoginPage"
 import SignUpPage from "./pages/SignUpPage"
 import ProtectedRoutes from "./utils/ProtectedRoutes"
-import AuthProvider from "./utils/AuthProvider"
 import Dashboard from "./pages/Dashboard"
 import BudgetPage from "@/pages/BudgetPage.tsx";
 import AnalyticsPage from "@/pages/AnalyticsPage.tsx";
 import ExpensePage from "@/pages/ExpensePage.tsx";
+import Provider from "./context/Provider.tsx"
 
 const queryClient = new QueryClient()
 
@@ -54,9 +54,9 @@ const router = createBrowserRouter([
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>  
-      <AuthProvider>
+      <Provider>
         <RouterProvider router={router} />
-      </AuthProvider>
+      </Provider>
       <ReactQueryDevtools />
     </QueryClientProvider>
   )

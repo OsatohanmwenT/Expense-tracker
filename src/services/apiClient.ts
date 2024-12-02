@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {useAuth} from "@/utils/AuthProvider.tsx";
+import {useAuth} from "@/context/AuthProvider.tsx";
 
 const useAxiosInstance = () => {
     const { user } = useAuth();

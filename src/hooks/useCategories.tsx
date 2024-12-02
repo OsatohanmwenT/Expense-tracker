@@ -1,5 +1,5 @@
 import Category from "@/entities/Category";
-import { useAuth } from "@/utils/AuthProvider";
+import { useAuth } from "@/context/AuthProvider.tsx";
 import { useQuery } from "@tanstack/react-query";
 
 const useCategories = () => {

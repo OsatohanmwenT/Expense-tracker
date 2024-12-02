@@ -30,6 +30,13 @@ interface Props {
 }
 
 function AnalyticsLineChart({ chartData }: Props) {
+    if (!chartData || chartData.length === 0) {
+        return (
+          <p className="text-center text-muted-foreground">
+            No data available to display on graph.
+          </p>
+        );
+      }
     return (
         <Card className="dark">
             <CardHeader>
