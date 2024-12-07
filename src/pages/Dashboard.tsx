@@ -14,7 +14,7 @@ const Dashboard = () => {
   return (
     <div className="p-5">
 
-        <h1 className="text-xl lg:text-3xl text-white font-semibold">Welcome back, <span className="capitalize">{user?.username}</span></h1>
+        <h1 className="text-xl lg:text-3xl dark:text-white font-semibold">Welcome back, <span className="capitalize">{user?.username}</span></h1>
         <p className="text-purple mb-5">How was your day?</p>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
             <AnalyticsCard name="Total Amount of Expenses" total={analytics?.total_expenses} />

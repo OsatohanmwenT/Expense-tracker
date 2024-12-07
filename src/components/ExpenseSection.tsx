@@ -47,12 +47,12 @@ const ExpenseSection = ({ data, error, isLoading }: Props) => {
   return (
     <div className="col-span-2">
         <div className="flex items-center justify-between">
-            <h3 className="font-semibold text-white text-2xl">Latest Expense</h3>
-            <button onClick={() => setIsAddBoxOpen(true)} className="bg-purple rounded-md px-3 py-2 hover:bg-purple/90 transition-all">Add Expense</button>
+            <h3 className="font-semibold dark:text-white text-2xl">Latest Expense</h3>
+            <button onClick={() => setIsAddBoxOpen(true)} className="bg-purple rounded-md px-3 py-2 hover:bg-purple/90 text-white dark:text-black transition-all">Add Expense</button>
         </div>
-        <table className="w-full mt-5 border-2 border-zinc-800 tab mx-auto text-left">
+        <table className="w-full mt-5 border-2  border-zinc-100 dark:border-zinc-800 tab mx-auto text-left">
             <thead>
-                <tr className="border-b-[1px] text-white  border-zinc-900">
+                <tr className="border-b-[1px] dark:text-white border-zinc-100 dark:border-zinc-900">
                     <th className="h-12 font-semibold max-sm:text-sm px-2 md:px-4">Amount</th>
                     <th className="h-12 font-semibold max-sm:text-sm px-2 md:px-4">Category</th>
                     <th className="h-12 font-semibold max-sm:text-sm px-2 md:px-4">Description</th>
@@ -74,7 +74,7 @@ const ExpenseSection = ({ data, error, isLoading }: Props) => {
                     </tr>
                 ) : (
                     data?.map((tableItem) => (
-                        <tr className="border-b-[1px] text-white border-zinc-800 relative" key={tableItem.id}>
+                        <tr className="border-b-[1px] dark:text-white border-zinc-100 dark:border-zinc-800 relative" key={tableItem.id}>
                             <td className="px-2 max-md:text-sm md:px-4 py-4 align-middle">₦{tableItem.amount}</td>
                             <td className="px-2 max-md:text-sm md:px-4 py-4 align-middle">{tableItem.category_name}</td>
                             <td className="px-2 max-md:text-sm md:px-4 py-4 align-middle">{tableItem.name}</td>
@@ -84,9 +84,9 @@ const ExpenseSection = ({ data, error, isLoading }: Props) => {
                                     onClick={(e) => toggleAction(e, tableItem.id)}
                                     className="flex items-center gap-1"
                                 >
-                                    <div className="w-1 h-1 md:w-[6px] md:h-[6px] bg-white rounded-full"></div>
-                                    <div className="w-1 h-1 md:w-[6px] md:h-[6px] bg-white rounded-full"></div>
-                                    <div className="w-1 h-1 md:w-[6px] md:h-[6px] bg-white rounded-full"></div>
+                                    <div className="w-1 h-1 md:w-[6px] md:h-[6px] bg-black dark:bg-white rounded-full"></div>
+                                    <div className="w-1 h-1 md:w-[6px] md:h-[6px] bg-black dark:bg-white rounded-full"></div>
+                                    <div className="w-1 h-1 md:w-[6px] md:h-[6px] bg-black dark:bg-white rounded-full"></div>
                                 </button>
                             </td>
                             <ActionBox openRow={openRow} tableItemId={tableItem.id} openDialog={openDialog} openAlertDialog={openAlertDialog} />

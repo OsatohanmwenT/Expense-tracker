@@ -27,7 +27,7 @@ function CalenderInput({ field }: CalendarInputProps) {
           <Button
             variant={"outline"}
             className={cn(
-              "pl-3 text-left font-normal bg-black",
+              "pl-3 text-left font-normal dark:bg-black",
               !field.value && "text-muted-foreground"
             )}
           >
@@ -41,7 +41,7 @@ function CalenderInput({ field }: CalendarInputProps) {
         </FormControl>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
-        <Calendar className="bg-black text-white"
+        <Calendar className="dark:bg-black dark:text-white"
           mode="single"
           selected={field.value}
           onSelect={(date) => {

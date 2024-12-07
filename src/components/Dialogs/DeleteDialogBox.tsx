@@ -26,7 +26,7 @@ import {
 
     return (
       <AlertDialog open={isAlertOpen} >
-        <AlertDialogContent className="bg-zinc-900 border-zinc-800">
+        <AlertDialogContent className="dark:bg-zinc-900 dark:border-zinc-800">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-white">Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription className="text-zinc-600">

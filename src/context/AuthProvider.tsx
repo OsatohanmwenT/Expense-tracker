@@ -27,7 +27,7 @@ const AuthProvider = ({ children }: Props) => {
       setLoading(true)
       setError("")
       try{
-      const res = await fetch("http://127.0.0.1:8000/auth/user/login",{
+      const res = await fetch(import.meta.env.VITE_URL + "/auth/user/login",{
         method: "POST",
         headers: {
           'Accept': 'application/json',
@@ -56,7 +56,7 @@ const AuthProvider = ({ children }: Props) => {
       setLoading(true)
       setError("")
       try{
-          const res = await fetch("http://127.0.0.1:8000/auth/register",{
+          const res = await fetch(import.meta.env.VITE_URL + "/auth/register",{
             method: "POST",
             headers: {
               'Accept': 'application/json',
@@ -82,19 +82,6 @@ const AuthProvider = ({ children }: Props) => {
     setUser(null)
   }
 
-  // const fetchUser = async() => {
-  //   try{
-  //     const response = await fetch("http://127.0.0.1:8000/auth/protected-route")
-  //     if(!response.ok) {
-  //       throw new Error(`HTTP Error status: ${response.status}`)
-  //     }
-  //     const message = await response.json()
-  //     console.log(message)
-  //   }catch (err) {
-  //     console.error("Submission error:", err);
-  //   }
-  // }
-  
   const context = {
     user,
     login,

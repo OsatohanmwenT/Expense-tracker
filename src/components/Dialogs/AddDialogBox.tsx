@@ -58,7 +58,7 @@ function AddDialogBox({
   if (isDesktop) {
     return (
       <Dialog open={isAddBoxOpen} onOpenChange={setIsAddBoxOpen}>
-        <DialogContent className="sm:max-w-[425px] bg-black text-white border-zinc-800">
+        <DialogContent className="sm:max-w-[425px] dark:bg-black dark:text-white dark:border-zinc-800">
           <DialogHeader>
             <DialogTitle className="text-purple">Add Expense</DialogTitle>
             <DialogDescription>
@@ -77,7 +77,7 @@ function AddDialogBox({
 
   return (
     <Drawer open={isAddBoxOpen} onOpenChange={setIsAddBoxOpen}>
-      <DrawerContent className="dark text-white">
+      <DrawerContent className="dark:dark dark:text-white">
         <DrawerHeader className="text-left">
           <DrawerTitle className="text-white">Add Expense</DrawerTitle>
           <DrawerDescription className="text-purple">

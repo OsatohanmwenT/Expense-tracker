@@ -38,7 +38,7 @@ function AnalyticsLineChart({ chartData }: Props) {
         );
       }
     return (
-        <Card className="dark">
+        <Card className="dark:dark">
             <CardHeader>
                 <CardTitle>Daily Expenses</CardTitle>
                 <CardDescription>{format(new Date(chartData[0].date), "MMMM yyyy")}</CardDescription>

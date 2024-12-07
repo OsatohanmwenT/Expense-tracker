@@ -41,7 +41,7 @@ function AnalyticsPieChart({ data }: { data: ChartDataType[] }) {
   const totalValue = data.reduce((sum, entry) => sum + entry.total, 0);
 
   return (
-    <Card className="flex dark flex-col">
+    <Card className="flex dark:dark flex-col">
       <CardHeader className="items-center pb-0">
         <CardTitle>Pie Chart - Label List</CardTitle>
         <CardDescription>January - June 2024</CardDescription>

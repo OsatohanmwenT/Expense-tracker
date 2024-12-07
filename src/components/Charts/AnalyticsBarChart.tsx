@@ -42,7 +42,7 @@ const chartConfig = {
 
 function AnalyticsBarChart() {
     return (
-        <Card className="dark">
+        <Card className="dark:dark dark:border-zinc-800">
             <CardHeader>
                 <CardTitle>Activities</CardTitle>
                 <CardDescription>Budget to Expense</CardDescription>

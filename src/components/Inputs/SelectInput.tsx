@@ -28,7 +28,7 @@ function SelectInput({ field }: { field: FieldValues }) {
       <SelectTrigger>
         <SelectValue placeholder="Select a Category" />
       </SelectTrigger>
-      <SelectContent className="bg-black">
+      <SelectContent className="dark:bg-black">
         <SelectGroup>
           <SelectLabel className="text-white">Category</SelectLabel>
           {data?.map((category) => (
@@ -36,7 +36,7 @@ function SelectInput({ field }: { field: FieldValues }) {
               {category.name}
             </SelectItem>
           ))}
-          <button onClick={openCategoryBox} className="text-white py-1 px-2 text-left capitalize rounded-md hover:bg-white w-full hover:text-black">other</button>
+          <button onClick={openCategoryBox} className="text-white py-1 px-2 text-left capitalize rounded-md dark:hover:bg-white w-full dark:hover:text-black">other</button>
         </SelectGroup>
       </SelectContent>
     </Select>
