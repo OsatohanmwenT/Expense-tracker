@@ -10,7 +10,7 @@ const useCategories = () => {
             throw new Error("Access token is missing");
         }
         try{
-            const res = await fetch("http://127.0.0.1:8000/categories/",{
+            const res = await fetch(`${import.meta.env.VITE_URL}/categories/`,{
                 method: "GET",
                 headers: {
                     Accept: "application/json",
